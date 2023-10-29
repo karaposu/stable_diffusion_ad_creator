@@ -1,0 +1,7 @@
+transformers
+diffusers
+accelerate torch==1.13.1
+PIL
+opencv-python 
+numpy 
+requests
