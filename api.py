@@ -1,25 +1,16 @@
-from flask import Flask, request, send_from_directory, jsonify
+from flask import Flask, request
 from utils import decode_img, encode_img
-from utils import encode_img as utils_encode_img
-
-from make_stable_dif2 import make_image_dif, create_ad
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 import numpy as np
+from create_ad import generate_ad_from_image_and_logo, make_stable_diffusion
+
 
 app = Flask(__name__)
 
-
-
-
 @app.route('/task2/', methods=['GET', 'POST'])
 def task():
-    print("girdi0")
-    # return {"success": "true"}
 
     json = request.get_json()
-
-    print("girdi1")
-
 
     operation = json["operation"]
     base_image = json["base_image"]
@@ -35,26 +26,13 @@ def task():
     print("shape of decoded_logo_img:", logo_img.shape)
     logo_img = Image.fromarray(logo_img).convert('RGBA')
 
-
-    sim_img=make_image_dif(base_img,hex_code_diffusion)[0]
-
-
-    result=create_ad(sim_img, logo_img, punchline, hex_code_punchline, button_text, hex_code_button)
+    sim_img=make_stable_diffusion(base_img,hex_code_diffusion)[0]
+    result=generate_ad_from_image_and_logo(sim_img, logo_img, punchline, hex_code_punchline, button_text, hex_code_button)
 
     result= np.array(result)
     print("result.shape:", result.shape)
 
-    import cv2
-    import base64
-
-    # def encode_img(img):
-    #     print("result.shape2:", img.shape)
-    #     _, img_buffer = cv2.imencode('.png', img)
-    #     encoded_img = base64.b64encode(img_buffer)
-    #     return encoded_img.decode('utf-8')
     r=encode_img(result)
-
-
 
     package = {"success": 1,
             "result": r,
