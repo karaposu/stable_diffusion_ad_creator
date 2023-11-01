@@ -2,7 +2,7 @@
 
 This is a small case-study I made for a company.
 
-Main feature is an function which takes image, logo, color information as input and outputs a stable diffusion based ad template using these inputs.
+Main feature is a function which takes image, logo, color information as input and outputs a stable diffusion based ad template using these inputs.
 
 App is deployed with flask. Sending a post request with below format will return an base64 encoded result image. 
 
