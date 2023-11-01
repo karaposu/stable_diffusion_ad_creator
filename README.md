@@ -6,7 +6,7 @@ Main feature is an function which takes image, logo, color information as input 
 
 App is deployed with flask. Sending a post request with below format will return an base64 encoded result image. 
 
-data = {
+    data = {
 
     "operation": “”,
 
@@ -24,15 +24,17 @@ data = {
 
     "button_text": button_text
 
-}
+   }
 
 All details can be found in test.py and api.py
 
-Demo Results:
+Demo Inputs:
 
-![Screenshot](base_image_sample.png)
+![Screenshot](base_image_sample.jpg)
 
-![Screenshot](pepsu_logo.png)
+![Screenshot](pepsi_logo.png)
+
+Demo Output:
 
 ![Screenshot](output_image.png)
 
